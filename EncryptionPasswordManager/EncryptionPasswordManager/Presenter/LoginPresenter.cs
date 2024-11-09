@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 using EncryptionPasswordManager.Forms;
 using EncryptionPasswordManager.Model;
 
@@ -29,7 +29,16 @@ namespace EncryptionPasswordManager.Presenter
             if (!_model.UserMadeAccount())
             {
                 UserRegisterForm form = new UserRegisterForm(_model);
-                form.ShowDialog();
+                if(form.ShowDialog() == DialogResult.OK)
+                {
+                    form.Close();
+                    return;
+                }
+                else
+                {
+                    form.Close();
+                    Environment.Exit(0);
+                }
             }
         }
 
