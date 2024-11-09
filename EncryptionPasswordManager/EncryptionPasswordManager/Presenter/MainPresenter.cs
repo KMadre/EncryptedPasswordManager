@@ -56,10 +56,8 @@ namespace EncryptionPasswordManager.Presenter
         private void RemovePassword(object sender, EventArgs e)
         {
             PasswordDeletionForm form = new PasswordDeletionForm(_model);
-            if(form.ShowDialog() == DialogResult.OK)
-            {
-                PopulateView(_model.GetResult(String.Empty));
-            }
+            form.ShowDialog();
+            PopulateView(_model.GetResult(String.Empty));
         }
 
         private void AddNewPassword(object sender, EventArgs e)

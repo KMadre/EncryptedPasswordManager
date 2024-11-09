@@ -60,17 +60,28 @@ namespace EncryptionPasswordManager.Forms
             if (HashingRB.Checked)
             {
                 String result = Sha256.Encrypt256(PasswordTextBox.Text);
-                return result.Substring(0, trackBar1.Value);
+                int length = stringLengthLimiter(result, trackBar1.Value);
+                return result.Substring(0, length);
             }
             else if (AESRb.Checked)
             {
                 String result = AesEncrypt.EncryptStringToBytes_Aes(PasswordTextBox.Text, Convert.FromBase64String(AesKeyTxt.Text), Convert.FromBase64String(AesIvTxt.Text));
-                return result.Substring(0, trackBar1.Value);
+                int length = stringLengthLimiter(result, trackBar1.Value);
+                return result.Substring(0, length);
             }
             else
             {
                 return PasswordTextBox.Text;
             }
+        }
+
+        private int stringLengthLimiter(string result, int value)
+        {
+            if(result.Length < value)
+            {
+                return result.Length;
+            }
+            return value;
         }
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)

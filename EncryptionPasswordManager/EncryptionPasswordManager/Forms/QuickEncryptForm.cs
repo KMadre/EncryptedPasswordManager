@@ -22,7 +22,7 @@ namespace EncryptionPasswordManager.Forms
 
         private void confirmBtn_Click(object sender, EventArgs e)
         {
-            String result = Sha256.Encrypt256(this.infoLbl.Text);
+            String result = Sha256.Encrypt256(this.inputTxtBx.Text);
 
             
             Clipboard.SetText(result.Substring(0, this.trackBar1.Value));
