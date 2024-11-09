@@ -34,12 +34,14 @@ namespace EncryptionPasswordManager.Forms
             PasswordPanel.Controls.Clear();
             foreach (var item in populateViewList)
             {
-                PasswordUiItem passwordUiItem = new PasswordUiItem();
-                passwordUiItem.Username = item.PasswordData.Username;
-                passwordUiItem.Password = item.PasswordData.Password;
-                passwordUiItem.isHashed = item.isHashed;
-                passwordUiItem.Link = item.Link;
-                passwordUiItem.Dock = DockStyle.Top;
+                PasswordUiItem passwordUiItem = new PasswordUiItem(
+                    item.PasswordData.Username,
+                    item.PasswordData.Password,
+                    item.isHashed,
+                    item.Link,
+                    (item.PasswordData.Key != string.Empty) ? true : false,
+                    DockStyle.Top
+                    );
                 PasswordPanel.Controls.Add(passwordUiItem);
             }
         }

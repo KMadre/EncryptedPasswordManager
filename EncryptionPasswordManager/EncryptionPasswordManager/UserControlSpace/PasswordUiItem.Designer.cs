@@ -34,10 +34,10 @@
             this.PasswordField = new System.Windows.Forms.Label();
             this.linkLabel = new System.Windows.Forms.LinkLabel();
             this.CopyPasswordBtn = new System.Windows.Forms.Button();
-            this.isHashedLbl = new System.Windows.Forms.Label();
-            this.isHashedCb = new System.Windows.Forms.CheckBox();
+            this.encryptionTypeLbl = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.CopyUsernameBtn = new System.Windows.Forms.Button();
+            this.encryptionActualLbl = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,11 +71,17 @@
             // PasswordField
             // 
             this.PasswordField.AutoSize = true;
+            this.PasswordField.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PasswordField.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.PasswordField.Location = new System.Drawing.Point(72, 27);
             this.PasswordField.Name = "PasswordField";
-            this.PasswordField.Size = new System.Drawing.Size(16, 13);
+            this.PasswordField.Size = new System.Drawing.Size(121, 13);
             this.PasswordField.TabIndex = 3;
-            this.PasswordField.Text = "...";
+            this.PasswordField.Text = "Click to show password.";
+            this.PasswordField.Click += new System.EventHandler(this.PasswordField_Click);
+            this.PasswordField.MouseEnter += new System.EventHandler(this.PasswordField_MouseEnter);
+            this.PasswordField.MouseLeave += new System.EventHandler(this.PasswordField_MouseLeave);
+            this.PasswordField.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PasswordField_MouseUp);
             // 
             // linkLabel
             // 
@@ -98,30 +104,20 @@
             this.CopyPasswordBtn.UseVisualStyleBackColor = true;
             this.CopyPasswordBtn.Click += new System.EventHandler(this.CopyPasswordBtn_Click);
             // 
-            // isHashedLbl
+            // encryptionTypeLbl
             // 
-            this.isHashedLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.isHashedLbl.AutoSize = true;
-            this.isHashedLbl.Location = new System.Drawing.Point(358, 48);
-            this.isHashedLbl.Name = "isHashedLbl";
-            this.isHashedLbl.Size = new System.Drawing.Size(47, 13);
-            this.isHashedLbl.TabIndex = 6;
-            this.isHashedLbl.Text = "Hashed:";
-            // 
-            // isHashedCb
-            // 
-            this.isHashedCb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.isHashedCb.AutoSize = true;
-            this.isHashedCb.Enabled = false;
-            this.isHashedCb.Location = new System.Drawing.Point(402, 48);
-            this.isHashedCb.Name = "isHashedCb";
-            this.isHashedCb.Size = new System.Drawing.Size(15, 14);
-            this.isHashedCb.TabIndex = 7;
-            this.isHashedCb.UseVisualStyleBackColor = true;
+            this.encryptionTypeLbl.AutoSize = true;
+            this.encryptionTypeLbl.Location = new System.Drawing.Point(332, 16);
+            this.encryptionTypeLbl.Name = "encryptionTypeLbl";
+            this.encryptionTypeLbl.Size = new System.Drawing.Size(63, 13);
+            this.encryptionTypeLbl.TabIndex = 6;
+            this.encryptionTypeLbl.Text = "Encryption: ";
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.encryptionActualLbl);
             this.groupBox1.Controls.Add(this.CopyUsernameBtn);
+            this.groupBox1.Controls.Add(this.encryptionTypeLbl);
             this.groupBox1.Controls.Add(this.linkLabel);
             this.groupBox1.Controls.Add(this.CopyPasswordBtn);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -140,13 +136,20 @@
             this.CopyUsernameBtn.UseVisualStyleBackColor = true;
             this.CopyUsernameBtn.Click += new System.EventHandler(this.CopyUsernameBtn_Click);
             // 
+            // encryptionActualLbl
+            // 
+            this.encryptionActualLbl.AutoSize = true;
+            this.encryptionActualLbl.Location = new System.Drawing.Point(388, 16);
+            this.encryptionActualLbl.Name = "encryptionActualLbl";
+            this.encryptionActualLbl.Size = new System.Drawing.Size(33, 13);
+            this.encryptionActualLbl.TabIndex = 7;
+            this.encryptionActualLbl.Text = "None";
+            // 
             // PasswordUiItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.Controls.Add(this.isHashedCb);
-            this.Controls.Add(this.isHashedLbl);
             this.Controls.Add(this.PasswordField);
             this.Controls.Add(this.PassLbl);
             this.Controls.Add(this.UsernameField);
@@ -169,9 +172,9 @@
         private System.Windows.Forms.Label PasswordField;
         private System.Windows.Forms.LinkLabel linkLabel;
         private System.Windows.Forms.Button CopyPasswordBtn;
-        private System.Windows.Forms.Label isHashedLbl;
-        private System.Windows.Forms.CheckBox isHashedCb;
+        private System.Windows.Forms.Label encryptionTypeLbl;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button CopyUsernameBtn;
+        private System.Windows.Forms.Label encryptionActualLbl;
     }
 }

@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.PWDetailGroup = new System.Windows.Forms.GroupBox();
+            this.DoublePasswordText = new System.Windows.Forms.TextBox();
+            this.doublePasswordCb = new System.Windows.Forms.CheckBox();
+            this.LinkTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.AESRb = new System.Windows.Forms.RadioButton();
             this.HashingRB = new System.Windows.Forms.RadioButton();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
@@ -36,24 +40,29 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.DetailGroup = new System.Windows.Forms.GroupBox();
+            this.GenIvBtn = new System.Windows.Forms.Button();
+            this.AesIvTxt = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.genAesBtn = new System.Windows.Forms.Button();
+            this.AesKeyTxt = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.Confirm_Btn = new System.Windows.Forms.Button();
             this.Cancel_Btn = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.AesKeyTxt = new System.Windows.Forms.TextBox();
-            this.genAesBtn = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.AesIvTxt = new System.Windows.Forms.TextBox();
-            this.GenIvBtn = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.LinkTextBox = new System.Windows.Forms.TextBox();
-            this.doublePasswordCb = new System.Windows.Forms.CheckBox();
-            this.DoublePasswordText = new System.Windows.Forms.TextBox();
+            this.noChoiceRB = new System.Windows.Forms.RadioButton();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.charInfoTextLbl = new System.Windows.Forms.Label();
+            this.charInfoLbl = new System.Windows.Forms.Label();
             this.PWDetailGroup.SuspendLayout();
             this.DetailGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // PWDetailGroup
             // 
+            this.PWDetailGroup.Controls.Add(this.charInfoLbl);
+            this.PWDetailGroup.Controls.Add(this.charInfoTextLbl);
+            this.PWDetailGroup.Controls.Add(this.trackBar1);
+            this.PWDetailGroup.Controls.Add(this.noChoiceRB);
             this.PWDetailGroup.Controls.Add(this.DoublePasswordText);
             this.PWDetailGroup.Controls.Add(this.doublePasswordCb);
             this.PWDetailGroup.Controls.Add(this.LinkTextBox);
@@ -70,6 +79,41 @@
             this.PWDetailGroup.TabIndex = 0;
             this.PWDetailGroup.TabStop = false;
             this.PWDetailGroup.Text = "PassWord Details";
+            // 
+            // DoublePasswordText
+            // 
+            this.DoublePasswordText.Enabled = false;
+            this.DoublePasswordText.Location = new System.Drawing.Point(184, 174);
+            this.DoublePasswordText.Name = "DoublePasswordText";
+            this.DoublePasswordText.Size = new System.Drawing.Size(231, 20);
+            this.DoublePasswordText.TabIndex = 9;
+            // 
+            // doublePasswordCb
+            // 
+            this.doublePasswordCb.AutoSize = true;
+            this.doublePasswordCb.Location = new System.Drawing.Point(10, 176);
+            this.doublePasswordCb.Name = "doublePasswordCb";
+            this.doublePasswordCb.Size = new System.Drawing.Size(179, 17);
+            this.doublePasswordCb.TabIndex = 8;
+            this.doublePasswordCb.Text = "Use 2nd password for protection";
+            this.doublePasswordCb.UseVisualStyleBackColor = true;
+            this.doublePasswordCb.CheckedChanged += new System.EventHandler(this.doublePasswordCb_CheckedChanged);
+            // 
+            // LinkTextBox
+            // 
+            this.LinkTextBox.Location = new System.Drawing.Point(69, 149);
+            this.LinkTextBox.Name = "LinkTextBox";
+            this.LinkTextBox.Size = new System.Drawing.Size(346, 20);
+            this.LinkTextBox.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 152);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(27, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Link";
             // 
             // AESRb
             // 
@@ -148,6 +192,62 @@
             this.DetailGroup.TabStop = false;
             this.DetailGroup.Text = "Detailed Options";
             // 
+            // GenIvBtn
+            // 
+            this.GenIvBtn.Enabled = false;
+            this.GenIvBtn.Location = new System.Drawing.Point(330, 87);
+            this.GenIvBtn.Name = "GenIvBtn";
+            this.GenIvBtn.Size = new System.Drawing.Size(75, 23);
+            this.GenIvBtn.TabIndex = 5;
+            this.GenIvBtn.Text = "Generate";
+            this.GenIvBtn.UseVisualStyleBackColor = true;
+            this.GenIvBtn.Click += new System.EventHandler(this.GenIvBtn_Click);
+            // 
+            // AesIvTxt
+            // 
+            this.AesIvTxt.Enabled = false;
+            this.AesIvTxt.Location = new System.Drawing.Point(7, 87);
+            this.AesIvTxt.Name = "AesIvTxt";
+            this.AesIvTxt.Size = new System.Drawing.Size(317, 20);
+            this.AesIvTxt.TabIndex = 4;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 70);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(93, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "AES Encryption Iv";
+            // 
+            // genAesBtn
+            // 
+            this.genAesBtn.Enabled = false;
+            this.genAesBtn.Location = new System.Drawing.Point(330, 35);
+            this.genAesBtn.Name = "genAesBtn";
+            this.genAesBtn.Size = new System.Drawing.Size(75, 23);
+            this.genAesBtn.TabIndex = 2;
+            this.genAesBtn.Text = "Generate";
+            this.genAesBtn.UseVisualStyleBackColor = true;
+            this.genAesBtn.Click += new System.EventHandler(this.genAesBtn_Click);
+            // 
+            // AesKeyTxt
+            // 
+            this.AesKeyTxt.Enabled = false;
+            this.AesKeyTxt.Location = new System.Drawing.Point(7, 37);
+            this.AesKeyTxt.Name = "AesKeyTxt";
+            this.AesKeyTxt.Size = new System.Drawing.Size(317, 20);
+            this.AesKeyTxt.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "AES Encryption Key";
+            // 
             // Confirm_Btn
             // 
             this.Confirm_Btn.Location = new System.Drawing.Point(358, 397);
@@ -168,96 +268,45 @@
             this.Cancel_Btn.UseVisualStyleBackColor = true;
             this.Cancel_Btn.Click += new System.EventHandler(this.Cancel_Btn_Click);
             // 
-            // label3
+            // noChoiceRB
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "AES Encryption Key";
+            this.noChoiceRB.AutoSize = true;
+            this.noChoiceRB.Location = new System.Drawing.Point(10, 72);
+            this.noChoiceRB.Name = "noChoiceRB";
+            this.noChoiceRB.Size = new System.Drawing.Size(92, 17);
+            this.noChoiceRB.TabIndex = 10;
+            this.noChoiceRB.TabStop = true;
+            this.noChoiceRB.Text = "No Encryption";
+            this.noChoiceRB.UseVisualStyleBackColor = true;
             // 
-            // AesKeyTxt
+            // trackBar1
             // 
-            this.AesKeyTxt.Enabled = false;
-            this.AesKeyTxt.Location = new System.Drawing.Point(7, 37);
-            this.AesKeyTxt.Name = "AesKeyTxt";
-            this.AesKeyTxt.Size = new System.Drawing.Size(317, 20);
-            this.AesKeyTxt.TabIndex = 1;
+            this.trackBar1.Location = new System.Drawing.Point(137, 98);
+            this.trackBar1.Maximum = 32;
+            this.trackBar1.Minimum = 8;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(278, 45);
+            this.trackBar1.TabIndex = 11;
+            this.trackBar1.Value = 8;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
-            // genAesBtn
+            // charInfoTextLbl
             // 
-            this.genAesBtn.Enabled = false;
-            this.genAesBtn.Location = new System.Drawing.Point(330, 35);
-            this.genAesBtn.Name = "genAesBtn";
-            this.genAesBtn.Size = new System.Drawing.Size(75, 23);
-            this.genAesBtn.TabIndex = 2;
-            this.genAesBtn.Text = "Generate";
-            this.genAesBtn.UseVisualStyleBackColor = true;
-            this.genAesBtn.Click += new System.EventHandler(this.genAesBtn_Click);
+            this.charInfoTextLbl.AutoSize = true;
+            this.charInfoTextLbl.Location = new System.Drawing.Point(144, 76);
+            this.charInfoTextLbl.Name = "charInfoTextLbl";
+            this.charInfoTextLbl.Size = new System.Drawing.Size(118, 13);
+            this.charInfoTextLbl.TabIndex = 12;
+            this.charInfoTextLbl.Text = "How Many Characters?";
             // 
-            // label6
+            // charInfoLbl
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 70);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "AES Encryption Iv";
-            // 
-            // AesIvTxt
-            // 
-            this.AesIvTxt.Enabled = false;
-            this.AesIvTxt.Location = new System.Drawing.Point(7, 87);
-            this.AesIvTxt.Name = "AesIvTxt";
-            this.AesIvTxt.Size = new System.Drawing.Size(317, 20);
-            this.AesIvTxt.TabIndex = 4;
-            // 
-            // GenIvBtn
-            // 
-            this.GenIvBtn.Enabled = false;
-            this.GenIvBtn.Location = new System.Drawing.Point(330, 87);
-            this.GenIvBtn.Name = "GenIvBtn";
-            this.GenIvBtn.Size = new System.Drawing.Size(75, 23);
-            this.GenIvBtn.TabIndex = 5;
-            this.GenIvBtn.Text = "Generate";
-            this.GenIvBtn.UseVisualStyleBackColor = true;
-            this.GenIvBtn.Click += new System.EventHandler(this.GenIvBtn_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 152);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(27, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Link";
-            // 
-            // LinkTextBox
-            // 
-            this.LinkTextBox.Location = new System.Drawing.Point(69, 149);
-            this.LinkTextBox.Name = "LinkTextBox";
-            this.LinkTextBox.Size = new System.Drawing.Size(346, 20);
-            this.LinkTextBox.TabIndex = 7;
-            // 
-            // doublePasswordCb
-            // 
-            this.doublePasswordCb.AutoSize = true;
-            this.doublePasswordCb.Location = new System.Drawing.Point(10, 176);
-            this.doublePasswordCb.Name = "doublePasswordCb";
-            this.doublePasswordCb.Size = new System.Drawing.Size(179, 17);
-            this.doublePasswordCb.TabIndex = 8;
-            this.doublePasswordCb.Text = "Use 2nd password for protection";
-            this.doublePasswordCb.UseVisualStyleBackColor = true;
-            this.doublePasswordCb.CheckedChanged += new System.EventHandler(this.doublePasswordCb_CheckedChanged);
-            // 
-            // DoublePasswordText
-            // 
-            this.DoublePasswordText.Enabled = false;
-            this.DoublePasswordText.Location = new System.Drawing.Point(184, 174);
-            this.DoublePasswordText.Name = "DoublePasswordText";
-            this.DoublePasswordText.Size = new System.Drawing.Size(231, 20);
-            this.DoublePasswordText.TabIndex = 9;
+            this.charInfoLbl.AutoSize = true;
+            this.charInfoLbl.Location = new System.Drawing.Point(369, 76);
+            this.charInfoLbl.Name = "charInfoLbl";
+            this.charInfoLbl.Size = new System.Drawing.Size(13, 13);
+            this.charInfoLbl.TabIndex = 13;
+            this.charInfoLbl.Text = "8";
             // 
             // PasswordCreationForm
             // 
@@ -276,6 +325,7 @@
             this.PWDetailGroup.PerformLayout();
             this.DetailGroup.ResumeLayout(false);
             this.DetailGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -302,5 +352,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox DoublePasswordText;
         private System.Windows.Forms.CheckBox doublePasswordCb;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.RadioButton noChoiceRB;
+        private System.Windows.Forms.Label charInfoLbl;
+        private System.Windows.Forms.Label charInfoTextLbl;
     }
 }

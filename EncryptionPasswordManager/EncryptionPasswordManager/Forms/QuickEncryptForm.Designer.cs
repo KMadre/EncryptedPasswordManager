@@ -77,9 +77,11 @@
             // 
             this.trackBar1.Location = new System.Drawing.Point(13, 90);
             this.trackBar1.Maximum = 32;
+            this.trackBar1.Minimum = 8;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(209, 45);
             this.trackBar1.TabIndex = 4;
+            this.trackBar1.Value = 8;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll_1);
             // 
             // charNumLbl
@@ -98,7 +100,7 @@
             this.charInfoLbl.Name = "charInfoLbl";
             this.charInfoLbl.Size = new System.Drawing.Size(13, 13);
             this.charInfoLbl.TabIndex = 6;
-            this.charInfoLbl.Text = "0";
+            this.charInfoLbl.Text = "8";
             // 
             // QuickEncryptForm
             // 

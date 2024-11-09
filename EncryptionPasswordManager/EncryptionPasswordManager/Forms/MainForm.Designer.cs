@@ -41,7 +41,8 @@
             // 
             // PasswordPanel
             // 
-            this.PasswordPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.PasswordPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PasswordPanel.AutoScroll = true;
             this.PasswordPanel.AutoSize = true;
@@ -53,6 +54,8 @@
             // 
             // ControlPanel
             // 
+            this.ControlPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.ControlPanel.AutoSize = true;
             this.ControlPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ControlPanel.Controls.Add(this.label1);
