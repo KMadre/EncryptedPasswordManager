@@ -88,6 +88,7 @@
             this.exitBtn.TabIndex = 5;
             this.exitBtn.Text = "Exit";
             this.exitBtn.UseVisualStyleBackColor = true;
+            this.exitBtn.Click += new System.EventHandler(this.exitBtn_Click);
             // 
             // passTxtBx
             // 
@@ -118,6 +119,8 @@
             this.Controls.Add(this.userTxtBx);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.registerBtn);
+            this.MaximumSize = new System.Drawing.Size(326, 205);
+            this.MinimumSize = new System.Drawing.Size(326, 205);
             this.Name = "UserRegisterForm";
             this.Text = "UserRegisterForm";
             this.ResumeLayout(false);

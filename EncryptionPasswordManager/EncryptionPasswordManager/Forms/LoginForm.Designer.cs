@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.confirmButton = new System.Windows.Forms.Button();
-            this.cancelButton = new System.Windows.Forms.Button();
-            this.usernameTb = new System.Windows.Forms.TextBox();
             this.passwordTb = new System.Windows.Forms.TextBox();
+            this.usernameTb = new System.Windows.Forms.TextBox();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.confirmButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,15 +49,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Log In";
             // 
-            // confirmButton
+            // passwordTb
             // 
-            this.confirmButton.Location = new System.Drawing.Point(119, 126);
-            this.confirmButton.Name = "confirmButton";
-            this.confirmButton.Size = new System.Drawing.Size(75, 23);
-            this.confirmButton.TabIndex = 0;
-            this.confirmButton.Text = "Confirm";
-            this.confirmButton.UseVisualStyleBackColor = true;
-            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
+            this.passwordTb.Location = new System.Drawing.Point(9, 73);
+            this.passwordTb.Name = "passwordTb";
+            this.passwordTb.Size = new System.Drawing.Size(185, 20);
+            this.passwordTb.TabIndex = 3;
+            // 
+            // usernameTb
+            // 
+            this.usernameTb.Location = new System.Drawing.Point(9, 38);
+            this.usernameTb.Name = "usernameTb";
+            this.usernameTb.Size = new System.Drawing.Size(185, 20);
+            this.usernameTb.TabIndex = 2;
             // 
             // cancelButton
             // 
@@ -69,19 +73,15 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // usernameTb
+            // confirmButton
             // 
-            this.usernameTb.Location = new System.Drawing.Point(9, 38);
-            this.usernameTb.Name = "usernameTb";
-            this.usernameTb.Size = new System.Drawing.Size(185, 20);
-            this.usernameTb.TabIndex = 2;
-            // 
-            // passwordTb
-            // 
-            this.passwordTb.Location = new System.Drawing.Point(9, 73);
-            this.passwordTb.Name = "passwordTb";
-            this.passwordTb.Size = new System.Drawing.Size(185, 20);
-            this.passwordTb.TabIndex = 3;
+            this.confirmButton.Location = new System.Drawing.Point(119, 126);
+            this.confirmButton.Name = "confirmButton";
+            this.confirmButton.Size = new System.Drawing.Size(75, 23);
+            this.confirmButton.TabIndex = 0;
+            this.confirmButton.Text = "Confirm";
+            this.confirmButton.UseVisualStyleBackColor = true;
+            this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
             // LoginForm
             // 
@@ -89,6 +89,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(220, 178);
             this.Controls.Add(this.groupBox1);
+            this.MaximumSize = new System.Drawing.Size(236, 217);
+            this.MinimumSize = new System.Drawing.Size(236, 217);
             this.Name = "LoginForm";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);

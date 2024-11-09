@@ -85,12 +85,12 @@ namespace EncryptionPasswordManager.Model
             {
                 string encryptedXml = File.ReadAllText(filePath);
 
-                // string decryptedXml = AesEncrypt.DecryptStringFromBytes_Aes(Convert.FromBase64String(encryptedXml), Key, IV);
+                string decryptedXml = AesEncrypt.DecryptStringFromBytes_Aes(Convert.FromBase64String(encryptedXml), Key, IV);
 
                 XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
 
                 XmlSerializer dataSerializer = new XmlSerializer(typeof(SaveFileData), new XmlRootAttribute("SaveFileData"));
-                using (StringReader reader = new StringReader(encryptedXml))
+                using (StringReader reader = new StringReader(decryptedXml))
                 {
                     SaveFileData dataRoot = (SaveFileData)dataSerializer.Deserialize(reader);
                     _loginCredentials = dataRoot.LoginCredentials;
@@ -121,9 +121,9 @@ namespace EncryptionPasswordManager.Model
 
                 string combinedXml = writer.ToString();
 
-                // string encryptedXml = AesEncrypt.EncryptStringToBytes_Aes(combinedXml, Key, IV);
+                string encryptedXml = AesEncrypt.EncryptStringToBytes_Aes(combinedXml, Key, IV);
 
-                File.WriteAllText(filePath, combinedXml);
+                File.WriteAllText(filePath, encryptedXml);
             }
         }
 

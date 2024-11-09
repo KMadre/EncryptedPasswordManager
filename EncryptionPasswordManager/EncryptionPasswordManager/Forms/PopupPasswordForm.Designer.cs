@@ -67,6 +67,8 @@
             this.Controls.Add(this.confirmButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.passwordTb);
+            this.MaximumSize = new System.Drawing.Size(187, 157);
+            this.MinimumSize = new System.Drawing.Size(187, 157);
             this.Name = "PopupPasswordForm";
             this.Text = "PopupPasswordForm";
             this.ResumeLayout(false);
