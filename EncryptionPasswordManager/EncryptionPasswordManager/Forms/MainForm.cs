@@ -58,5 +58,15 @@ namespace EncryptionPasswordManager.Forms
         {
             AddNewPasswordEvent.Invoke(this, new EventArgs());
         }
+
+        private void DelPassBtn_Click(object sender, EventArgs e)
+        {
+            RemovePasswordEvent.Invoke(this, new EventArgs());
+        }
+
+        private void QuickEncryptBtn_Click(object sender, EventArgs e)
+        {
+            CreateQuickEncryptedEvent.Invoke(this, new EventArgs());
+        }
     }
 }

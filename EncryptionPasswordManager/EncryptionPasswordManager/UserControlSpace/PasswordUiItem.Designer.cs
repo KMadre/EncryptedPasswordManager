@@ -37,6 +37,8 @@
             this.isHashedLbl = new System.Windows.Forms.Label();
             this.isHashedCb = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CopyUsernameBtn = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // UserLbl
@@ -78,7 +80,7 @@
             // linkLabel
             // 
             this.linkLabel.AutoSize = true;
-            this.linkLabel.Location = new System.Drawing.Point(111, 48);
+            this.linkLabel.Location = new System.Drawing.Point(214, 52);
             this.linkLabel.Name = "linkLabel";
             this.linkLabel.Size = new System.Drawing.Size(81, 13);
             this.linkLabel.TabIndex = 4;
@@ -88,7 +90,7 @@
             // 
             // CopyPasswordBtn
             // 
-            this.CopyPasswordBtn.Location = new System.Drawing.Point(7, 43);
+            this.CopyPasswordBtn.Location = new System.Drawing.Point(110, 47);
             this.CopyPasswordBtn.Name = "CopyPasswordBtn";
             this.CopyPasswordBtn.Size = new System.Drawing.Size(98, 23);
             this.CopyPasswordBtn.TabIndex = 5;
@@ -119,11 +121,24 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.CopyUsernameBtn);
+            this.groupBox1.Controls.Add(this.linkLabel);
+            this.groupBox1.Controls.Add(this.CopyPasswordBtn);
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(440, 76);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
+            // 
+            // CopyUsernameBtn
+            // 
+            this.CopyUsernameBtn.Location = new System.Drawing.Point(6, 47);
+            this.CopyUsernameBtn.Name = "CopyUsernameBtn";
+            this.CopyUsernameBtn.Size = new System.Drawing.Size(98, 23);
+            this.CopyUsernameBtn.TabIndex = 6;
+            this.CopyUsernameBtn.Text = "Copy Username";
+            this.CopyUsernameBtn.UseVisualStyleBackColor = true;
+            this.CopyUsernameBtn.Click += new System.EventHandler(this.CopyUsernameBtn_Click);
             // 
             // PasswordUiItem
             // 
@@ -132,8 +147,6 @@
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.Controls.Add(this.isHashedCb);
             this.Controls.Add(this.isHashedLbl);
-            this.Controls.Add(this.CopyPasswordBtn);
-            this.Controls.Add(this.linkLabel);
             this.Controls.Add(this.PasswordField);
             this.Controls.Add(this.PassLbl);
             this.Controls.Add(this.UsernameField);
@@ -141,6 +154,8 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "PasswordUiItem";
             this.Size = new System.Drawing.Size(440, 76);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,5 +172,6 @@
         private System.Windows.Forms.Label isHashedLbl;
         private System.Windows.Forms.CheckBox isHashedCb;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button CopyUsernameBtn;
     }
 }

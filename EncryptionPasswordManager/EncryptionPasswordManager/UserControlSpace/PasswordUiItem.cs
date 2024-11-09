@@ -81,5 +81,10 @@ namespace EncryptionPasswordManager.UserControlSpace
         {
             Clipboard.SetText(Password);
         }
+
+        private void CopyUsernameBtn_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(Username);
+        }
     }
 }

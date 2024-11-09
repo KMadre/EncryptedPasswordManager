@@ -35,6 +35,7 @@
             this.NewPassBtn = new System.Windows.Forms.Button();
             this.SearchBtn = new System.Windows.Forms.Button();
             this.SearchTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.ControlPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +55,7 @@
             // 
             this.ControlPanel.AutoSize = true;
             this.ControlPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ControlPanel.Controls.Add(this.label1);
             this.ControlPanel.Controls.Add(this.QuickEncryptBtn);
             this.ControlPanel.Controls.Add(this.DelPassBtn);
             this.ControlPanel.Controls.Add(this.NewPassBtn);
@@ -66,25 +68,27 @@
             // 
             // QuickEncryptBtn
             // 
-            this.QuickEncryptBtn.Location = new System.Drawing.Point(3, 88);
+            this.QuickEncryptBtn.Location = new System.Drawing.Point(3, 109);
             this.QuickEncryptBtn.Name = "QuickEncryptBtn";
             this.QuickEncryptBtn.Size = new System.Drawing.Size(194, 23);
             this.QuickEncryptBtn.TabIndex = 4;
             this.QuickEncryptBtn.Text = "Quick Encrypt";
             this.QuickEncryptBtn.UseVisualStyleBackColor = true;
+            this.QuickEncryptBtn.Click += new System.EventHandler(this.QuickEncryptBtn_Click);
             // 
             // DelPassBtn
             // 
-            this.DelPassBtn.Location = new System.Drawing.Point(3, 58);
+            this.DelPassBtn.Location = new System.Drawing.Point(3, 80);
             this.DelPassBtn.Name = "DelPassBtn";
             this.DelPassBtn.Size = new System.Drawing.Size(194, 23);
             this.DelPassBtn.TabIndex = 3;
             this.DelPassBtn.Text = "Delete Password";
             this.DelPassBtn.UseVisualStyleBackColor = true;
+            this.DelPassBtn.Click += new System.EventHandler(this.DelPassBtn_Click);
             // 
             // NewPassBtn
             // 
-            this.NewPassBtn.Location = new System.Drawing.Point(3, 29);
+            this.NewPassBtn.Location = new System.Drawing.Point(3, 51);
             this.NewPassBtn.Name = "NewPassBtn";
             this.NewPassBtn.Size = new System.Drawing.Size(194, 23);
             this.NewPassBtn.TabIndex = 2;
@@ -94,7 +98,7 @@
             // 
             // SearchBtn
             // 
-            this.SearchBtn.Location = new System.Drawing.Point(147, 3);
+            this.SearchBtn.Location = new System.Drawing.Point(147, 25);
             this.SearchBtn.Name = "SearchBtn";
             this.SearchBtn.Size = new System.Drawing.Size(50, 20);
             this.SearchBtn.TabIndex = 1;
@@ -104,10 +108,19 @@
             // 
             // SearchTextBox
             // 
-            this.SearchTextBox.Location = new System.Drawing.Point(3, 3);
+            this.SearchTextBox.Location = new System.Drawing.Point(3, 25);
             this.SearchTextBox.Name = "SearchTextBox";
             this.SearchTextBox.Size = new System.Drawing.Size(144, 20);
             this.SearchTextBox.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Search For Link";
             // 
             // MainForm
             // 
@@ -134,5 +147,6 @@
         private System.Windows.Forms.Button QuickEncryptBtn;
         private System.Windows.Forms.Button DelPassBtn;
         private System.Windows.Forms.Button NewPassBtn;
+        private System.Windows.Forms.Label label1;
     }
 }

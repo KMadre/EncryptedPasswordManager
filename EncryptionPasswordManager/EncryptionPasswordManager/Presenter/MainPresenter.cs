@@ -49,12 +49,17 @@ namespace EncryptionPasswordManager.Presenter
 
         private void QuickEncryptedPassword(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            QuickEncryptForm form = new QuickEncryptForm();
+            form.ShowDialog();
         }
 
         private void RemovePassword(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            PasswordDeletionForm form = new PasswordDeletionForm(_model);
+            if(form.ShowDialog() == DialogResult.OK)
+            {
+                PopulateView(_model.GetResult(String.Empty));
+            }
         }
 
         private void AddNewPassword(object sender, EventArgs e)
