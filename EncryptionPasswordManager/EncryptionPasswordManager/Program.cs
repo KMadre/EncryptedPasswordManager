@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using EncryptionPasswordManager.Forms;
+using EncryptionPasswordManager.Model;
 
 namespace EncryptionPasswordManager
 {
@@ -19,12 +20,12 @@ namespace EncryptionPasswordManager
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             var formManager = new FormManager();
-
-            using (Form logIn = new LoginForm())
+            PasswordItemModel _model = new PasswordItemModel();
+            using (Form logIn = new LoginForm(_model))
             {
                 if(formManager.DialogWithResult(logIn) == DialogResult.OK)
                 {
-                    formManager.ShowForm(new MainForm());
+                    formManager.ShowForm(new MainForm(_model));
                     Application.Run();
                 }
             }

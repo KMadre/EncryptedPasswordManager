@@ -15,15 +15,15 @@ namespace EncryptionPasswordManager.Forms
 {
     public partial class PasswordCreationForm : Form
     {
-        private PasswordItem passwordItem;
-        private PasswordItemPasswordData passwordData;
+        private SaveFileDataPasswordItem passwordItem;
+        private SaveFileDataPasswordItemPasswordData passwordData;
         private PasswordItemModel model;
         public PasswordCreationForm(PasswordItemModel model)
         {
             InitializeComponent();
             this.model = model;
-            passwordData = new PasswordItemPasswordData();
-            passwordItem = new PasswordItem();
+            passwordData = new SaveFileDataPasswordItemPasswordData();
+            passwordItem = new SaveFileDataPasswordItem();
         }
 
         private void Cancel_Btn_Click(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace EncryptionPasswordManager.Forms
             passwordItem.Link = LinkTextBox.Text;
             passwordItem.isHashed = HashingRB.Checked;
             passwordItem.isDoubleProtected = doublePasswordCb.Checked;
-            passwordItem.DoublePassword = DoublePasswordText.Text;
+            passwordItem.DoublePassword = Sha256.Encrypt256(DoublePasswordText.Text);
 
             passwordData.Password = ProcessPassword();
         }

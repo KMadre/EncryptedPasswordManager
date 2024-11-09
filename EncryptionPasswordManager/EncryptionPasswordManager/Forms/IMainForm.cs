@@ -9,7 +9,7 @@ namespace EncryptionPasswordManager.Forms
     public interface IMainForm
     {
         void Close();
-        void PopulateData(List<PasswordItem> populateViewList);
+        void PopulateData(List<SaveFileDataPasswordItem> populateViewList);
         event EventHandler AddNewPasswordEvent;
         event EventHandler RemovePasswordEvent;
         event EventHandler CreateQuickEncryptedEvent;

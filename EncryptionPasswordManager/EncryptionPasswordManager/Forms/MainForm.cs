@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using EncryptionPasswordManager.Model;
 using EncryptionPasswordManager.Presenter;
 using EncryptionPasswordManager.UserControlSpace;
 
@@ -17,10 +17,10 @@ namespace EncryptionPasswordManager.Forms
     {
 
         MainPresenter mainPresenter;
-        public MainForm()
+        public MainForm(PasswordItemModel model)
         {
             InitializeComponent();
-            mainPresenter = new MainPresenter(this);
+            mainPresenter = new MainPresenter(this, model);
         }
 
         public event EventHandler AddNewPasswordEvent;
@@ -29,7 +29,7 @@ namespace EncryptionPasswordManager.Forms
         public event EventHandler CopyPasswordEvent;
         public event EventHandler ViewPasswordEvent;
 
-        public void PopulateData(List<PasswordItem> populateViewList)
+        public void PopulateData(List<SaveFileDataPasswordItem> populateViewList)
         {
             PasswordPanel.Controls.Clear();
             foreach (var item in populateViewList)
@@ -39,6 +39,8 @@ namespace EncryptionPasswordManager.Forms
                     item.PasswordData.Password,
                     item.isHashed,
                     item.Link,
+                    item.DoublePassword,
+                    item.isDoubleProtected,
                     (item.PasswordData.Key != string.Empty) ? true : false,
                     DockStyle.Top
                     );

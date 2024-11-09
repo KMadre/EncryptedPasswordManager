@@ -20,7 +20,6 @@ namespace EncryptionPasswordManager.Forms
             InitializeComponent();
             this.model = model;
             this.listView.Columns.Add("Username", 100);
-            this.listView.Columns.Add("Password", 100);
             this.listView.Columns.Add("Website Link", 250);
             PopulateList();
         }
@@ -33,7 +32,6 @@ namespace EncryptionPasswordManager.Forms
                 var listItem = new ListViewItem(new[]
                 {
                     item.PasswordData.Username,
-                    item.PasswordData.Password,
                     item.Link
                 });
 
@@ -49,8 +47,7 @@ namespace EncryptionPasswordManager.Forms
 
                 var deletionItem = model.PasswordItems.FirstOrDefault(
                     x => x.PasswordData.Username == selected.SubItems[0].Text &&
-                    x.PasswordData.Password == selected.SubItems[1].Text &&
-                    x.Link == selected.SubItems[2].Text);
+                    x.Link == selected.SubItems[1].Text);
                 model.RemoveFromPasswordModel(deletionItem);
             }
 

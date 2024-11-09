@@ -10,19 +10,49 @@ namespace EncryptionPasswordManager.Model
 {
     public class PasswordItemModel
     {
-        private List<PasswordItem> passwordItems;
+        private SaveFileData saveFileData;
+        private SaveFileDataLoginCredentials _loginCredentials;
+        private List<SaveFileDataPasswordItem> passwordItems;
         private string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "passStoreEncrypt.xml");
         private static readonly byte[] Key = Convert.FromBase64String("e1qyQwJEEgXnk01HUgKozUstsxEsrKYhnxgPL5m7Jd4=");
         private static readonly byte[] IV = Convert.FromBase64String("sOAyqF23BbcPGCTWi97YSg==");
 
         public PasswordItemModel()
         {
-            passwordItems = new List<PasswordItem>();
+            passwordItems = new List<SaveFileDataPasswordItem>();
             SaveFileExists();
             LoadFromXml();
         }
 
-        public List<PasswordItem> GetResult(string query)
+        public bool UserMadeAccount()
+        {
+            if(_loginCredentials != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool AttemptLogin(string username, string password)
+        {
+            if (Sha256.Encrypt256(password) == _loginCredentials.Password &&
+                Sha256.Encrypt256(username) == _loginCredentials.Username)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public void RegisterAccount(string username, string password)
+        {
+            _loginCredentials = new SaveFileDataLoginCredentials()
+            {
+                Username = Sha256.Encrypt256(username),
+                Password = Sha256.Encrypt256(password)
+            };
+        }
+
+        public List<SaveFileDataPasswordItem> GetResult(string query)
         {
             if(query == string.Empty)
             {
@@ -35,50 +65,65 @@ namespace EncryptionPasswordManager.Model
             }
         }
 
-        public void AddToPasswordModel(PasswordItem item)
+        public void AddToPasswordModel(SaveFileDataPasswordItem item)
         {
             passwordItems.Add(item);
             SaveToXml();
         }
 
-        public void RemoveFromPasswordModel(PasswordItem item)
+        public void RemoveFromPasswordModel(SaveFileDataPasswordItem item)
         {
             passwordItems.Remove(item);
             SaveToXml();
         }
 
-        public List<PasswordItem> PasswordItems => passwordItems;
+        public List<SaveFileDataPasswordItem> PasswordItems => passwordItems;
 
         public void LoadFromXml()
         {
             try
-            {                
+            {
                 string encryptedXml = File.ReadAllText(filePath);
 
-                string decryptedXml = AesEncrypt.DecryptStringFromBytes_Aes(Convert.FromBase64String(encryptedXml), Key, IV);
+                // string decryptedXml = AesEncrypt.DecryptStringFromBytes_Aes(Convert.FromBase64String(encryptedXml), Key, IV);
 
-                XmlSerializer serializer = new XmlSerializer(typeof(List<PasswordItem>), new XmlRootAttribute("PasswordItems"));
-                using (StringReader reader = new StringReader(decryptedXml))
+                XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+
+                XmlSerializer dataSerializer = new XmlSerializer(typeof(SaveFileData), new XmlRootAttribute("SaveFileData"));
+                using (StringReader reader = new StringReader(encryptedXml))
                 {
-                    passwordItems = (List<PasswordItem>)serializer.Deserialize(reader);
+                    SaveFileData dataRoot = (SaveFileData)dataSerializer.Deserialize(reader);
+                    _loginCredentials = dataRoot.LoginCredentials;
+                    passwordItems = dataRoot.PasswordItems.ToList();
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                return;
+                Console.WriteLine(ex.Message);
             }
         }
 
         public void SaveToXml()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(List<PasswordItem>), new XmlRootAttribute("PasswordItems"));
+
+            SaveFileData dataToSave = new SaveFileData
+            {
+                LoginCredentials = _loginCredentials,
+                PasswordItems = passwordItems.ToArray()
+            };
+
+            XmlSerializerNamespaces namespaces = new XmlSerializerNamespaces();
+
+            XmlSerializer serializer = new XmlSerializer(typeof(SaveFileData), new XmlRootAttribute("SaveFileData"));
             using (StringWriter writer = new StringWriter())
             {
-                serializer.Serialize(writer, passwordItems);
-                string serializedXml = writer.ToString();
+                serializer.Serialize(writer, dataToSave, namespaces);
 
-                string encryptedXml = AesEncrypt.EncryptStringToBytes_Aes(serializedXml, Key, IV);
-                
-                File.WriteAllText(filePath, encryptedXml);
+                string combinedXml = writer.ToString();
+
+                // string encryptedXml = AesEncrypt.EncryptStringToBytes_Aes(combinedXml, Key, IV);
+
+                File.WriteAllText(filePath, combinedXml);
             }
         }
 

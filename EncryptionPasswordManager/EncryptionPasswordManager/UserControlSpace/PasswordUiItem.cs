@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using EncryptionPasswordManager.Forms;
 
 namespace EncryptionPasswordManager.UserControlSpace
 {
@@ -16,13 +17,43 @@ namespace EncryptionPasswordManager.UserControlSpace
         private bool _passwordShowing = false;
         private const string PASSWORD_HIDDEN_STRING = "Click to show password.";
 
-        public PasswordUiItem(string username, string password, bool isHashed, string link, bool isAes, DockStyle top)
+        private string _password;
+
+        public string Password
+        {
+            get { return PasswordField.Text; }
+            set { _password = value; }
+        }
+
+        public string Username
+        {
+            get { return UsernameField.Text; }
+            set { UsernameField.Text = value; }
+        }
+
+        public bool isHashed { get; set; }
+
+        public bool isAes { get; set; }
+
+        public bool hasSecondPassword { get; set; }
+
+        public string secondPassword { get; set; }
+
+        public string Link
+        {
+            get { return linkLabel.Text; }
+            set { linkLabel.Text = value; }
+        }
+
+        public PasswordUiItem(string username, string password, bool isHashed, string link, string doublePassword, bool isDoublePassword, bool isAes, DockStyle top)
         {
             InitializeComponent();
             
             this._password = password;
             this.Username = username;
             this.Link = link;
+            this.hasSecondPassword = isDoublePassword;
+            this.secondPassword = doublePassword;
             this.isHashed = isHashed;
             this.isAes = isAes;
             this.Dock = top;
@@ -50,32 +81,6 @@ namespace EncryptionPasswordManager.UserControlSpace
             {
                 return "None";
             }
-        }
-
-        private string _password;
-        private bool v;
-        private DockStyle top;
-
-        public string Password
-        {
-            get { return PasswordField.Text; }
-            set { _password = value; }
-        }
-
-        public string Username
-        {
-            get { return UsernameField.Text;}
-            set { UsernameField.Text = value;}
-        }
-
-        public bool isHashed { get; set; }
-
-        public bool isAes { get; set; }
-
-        public string Link
-        {
-            get { return linkLabel.Text; }
-            set { linkLabel.Text = value; }
         }
 
         private void linkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -115,7 +120,17 @@ namespace EncryptionPasswordManager.UserControlSpace
 
         private void CopyPasswordBtn_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(_password);
+            if (hasSecondPassword)
+            {
+                if (SecondPasswordVerification())
+                {
+                    Clipboard.SetText(_password);
+                }
+            }
+            else
+            {
+                Clipboard.SetText(_password);
+            }
         }
 
         private void CopyUsernameBtn_Click(object sender, EventArgs e)
@@ -146,9 +161,31 @@ namespace EncryptionPasswordManager.UserControlSpace
             }
             else
             {
-                this.PasswordField.Text = _password;
-                _passwordShowing = !_passwordShowing;
+                if (hasSecondPassword)
+                {
+                    if (SecondPasswordVerification())
+                    {
+                        this.PasswordField.Text = _password;
+                        _passwordShowing = !_passwordShowing;
+                    }
+                }
+                else if(!hasSecondPassword)
+                {
+                    this.PasswordField.Text = _password;
+                    _passwordShowing = !_passwordShowing;
+                }
             }
+        }
+
+        private bool SecondPasswordVerification()
+        {
+            PopupPasswordForm form = new PopupPasswordForm(secondPassword);
+            form.ShowDialog();
+            if (form.DialogResult == DialogResult.OK)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

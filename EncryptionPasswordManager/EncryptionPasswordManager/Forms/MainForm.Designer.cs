@@ -45,7 +45,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PasswordPanel.AutoScroll = true;
-            this.PasswordPanel.AutoSize = true;
             this.PasswordPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.PasswordPanel.Location = new System.Drawing.Point(218, 12);
             this.PasswordPanel.Name = "PasswordPanel";

@@ -7,17 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using EncryptionPasswordManager.Model;
 using EncryptionPasswordManager.Presenter;
 
 namespace EncryptionPasswordManager.Forms
 {
     public partial class LoginForm : Form, ILoginForm
     {
-        public LoginForm()
+        public LoginForm(PasswordItemModel model)
         {
             InitializeComponent();
-            var presenter = new LoginPresenter(this);
+            var presenter = new LoginPresenter(this, model);
         }
 
         public string Username

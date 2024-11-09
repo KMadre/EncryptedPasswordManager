@@ -22,9 +22,76 @@ using System.Xml.Serialization;
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/PasswordSchema.xsd")]
 [System.Xml.Serialization.XmlRootAttribute(Namespace="http://tempuri.org/PasswordSchema.xsd", IsNullable=false)]
-public partial class PasswordItem {
+public partial class SaveFileData {
     
-    private PasswordItemPasswordData passwordDataField;
+    private SaveFileDataLoginCredentials loginCredentialsField;
+    
+    private SaveFileDataPasswordItem[] passwordItemsField;
+    
+    /// <remarks/>
+    public SaveFileDataLoginCredentials LoginCredentials {
+        get {
+            return this.loginCredentialsField;
+        }
+        set {
+            this.loginCredentialsField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlArrayItemAttribute("PasswordItem", IsNullable=false)]
+    public SaveFileDataPasswordItem[] PasswordItems {
+        get {
+            return this.passwordItemsField;
+        }
+        set {
+            this.passwordItemsField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/PasswordSchema.xsd")]
+public partial class SaveFileDataLoginCredentials {
+    
+    private string usernameField;
+    
+    private string passwordField;
+    
+    /// <remarks/>
+    public string Username {
+        get {
+            return this.usernameField;
+        }
+        set {
+            this.usernameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    public string Password {
+        get {
+            return this.passwordField;
+        }
+        set {
+            this.passwordField = value;
+        }
+    }
+}
+
+/// <remarks/>
+[System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+[System.SerializableAttribute()]
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/PasswordSchema.xsd")]
+public partial class SaveFileDataPasswordItem {
+    
+    private SaveFileDataPasswordItemPasswordData passwordDataField;
     
     private bool isHashedField;
     
@@ -35,7 +102,7 @@ public partial class PasswordItem {
     private string doublePasswordField;
     
     /// <remarks/>
-    public PasswordItemPasswordData PasswordData {
+    public SaveFileDataPasswordItemPasswordData PasswordData {
         get {
             return this.passwordDataField;
         }
@@ -91,7 +158,7 @@ public partial class PasswordItem {
 [System.Diagnostics.DebuggerStepThroughAttribute()]
 [System.ComponentModel.DesignerCategoryAttribute("code")]
 [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/PasswordSchema.xsd")]
-public partial class PasswordItemPasswordData {
+public partial class SaveFileDataPasswordItemPasswordData {
     
     private string usernameField;
     

@@ -14,10 +14,10 @@ namespace EncryptionPasswordManager.Presenter
     {
         private readonly IMainForm _form;
         private PasswordItemModel _model;
-        public MainPresenter(IMainForm form)
+        public MainPresenter(IMainForm form, PasswordItemModel model)
         {
             _form = form;
-            _model = new PasswordItemModel();
+            _model = model;
             _form.AddNewPasswordEvent += AddNewPassword;
             _form.RemovePasswordEvent += RemovePassword;
             _form.CreateQuickEncryptedEvent += QuickEncryptedPassword;
@@ -27,7 +27,7 @@ namespace EncryptionPasswordManager.Presenter
             PopulateView(_model.GetResult(String.Empty));
         }
 
-        public void PopulateView(List<PasswordItem> populateViewList)
+        public void PopulateView(List<SaveFileDataPasswordItem> populateViewList)
         {
             _form.PopulateData(populateViewList);
         }
