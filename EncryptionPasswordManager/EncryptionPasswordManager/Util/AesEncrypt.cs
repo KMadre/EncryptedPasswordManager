@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
 
+/// <summary>
+/// Talked with AJ and I was allowed to use the code doc referenced here as long as I understand it so I commented it myself.
+/// 
+/// I used AES as it allows for full encryption and decryption given the correct key and IV. 
+/// I protect my xml file which holds a users data with this, via a constant key in the Password Model file.
+/// </summary>
+
 namespace EncryptionPasswordManager.Util
 {
     public class AesEncrypt
@@ -18,7 +25,8 @@ namespace EncryptionPasswordManager.Util
         ////////////////////////////////////
         public static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
         {
-            // Check arguments.
+            // direct from the referenced code, no real reason to do anything else
+            // It checks for valid text format, key format and IV foramt (just that its not null or too small to be valid)
             if (cipherText == null || cipherText.Length <= 0)
                 throw new ArgumentNullException("cipherText");
             if (Key == null || Key.Length <= 0)
@@ -30,21 +38,25 @@ namespace EncryptionPasswordManager.Util
             // the decrypted text.
             string plaintext = null;
 
-            // Create an Aes object
-            // with the specified key and IV.
+            // makes a temporary AES object with using, object will only be available in the brackets and then immediately deferenced.
+            // Also from the referenced code
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = Key;
                 aesAlg.IV = IV;
 
-                // Create a decryptor to perform the stream transform.
+                // This is also from the referenced code, it is a premade functionality for cryptographic transformations
+                // Acts as the decryptor for the aes key and IV passed in
                 ICryptoTransform decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
 
-                // Create the streams used for decryption.
+                // Also from referenced code, it is inside of using blocks as well. Helps with security
+                // MemoryStream is a stream to memory, doesn't leave traces I imagine since RAM is constantly overwritten. Helps with security
                 using (MemoryStream msDecrypt = new MemoryStream(cipherText))
                 {
+                    // Also from ref. code. It's another cryptographic transformation utility, uses the decryptor we defined earlier
                     using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
                     {
+                        // just a stream reader to get decrypted info from RAM
                         using (StreamReader srDecrypt = new StreamReader(csDecrypt))
                         {
 
@@ -59,9 +71,16 @@ namespace EncryptionPasswordManager.Util
             return plaintext;
         }
 
+        ////////////////////////////////////
+        /// <summary>
+        /// The code below is taken directly from the microsoft documentation, slightly modified for my use-case
+        /// https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes?view=net-8.0
+        /// </summary>
+        ////////////////////////////////////
         public static string EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
         {
-            // Check arguments.
+            // direct from the referenced code, no real reason to do anything else
+            // It checks for valid text format, key format and IV foramt (just that its not null or too small to be valid)
             if (plainText == null || plainText.Length <= 0)
                 throw new ArgumentNullException("plainText");
             if (Key == null || Key.Length <= 0)
@@ -70,21 +89,25 @@ namespace EncryptionPasswordManager.Util
                 throw new ArgumentNullException("IV");
             byte[] encrypted;
 
-            // Create an Aes object
-            // with the specified key and IV.
+            // makes a temporary AES object with using, object will only be available in the brackets and then immediately deferenced.
+            // Also from the referenced code
             using (Aes aesAlg = Aes.Create())
             {
                 aesAlg.Key = Key;
                 aesAlg.IV = IV;
 
-                // Create an encryptor to perform the stream transform.
+                // This is also from the referenced code, it is a premade functionality for cryptographic transformations
+                // acts as the encryptor for the aes key and IV passed in
                 ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
 
-                // Create the streams used for encryption.
+                // Also from referenced code, it is inside of using blocks as well. Helps with security
+                // MemoryStream is a stream to memory, doesn't leave traces I imagine since RAM is constantly overwritten. Helps with security
                 using (MemoryStream msEncrypt = new MemoryStream())
                 {
+                    // Also from ref. code. It's another cryptographic transformation utility, uses encryptor we defined earleir
                     using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
                     {
+                        // just a stream writer to assemble the string into its bytes
                         using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
                         {
                             //Write all data to the stream.
@@ -96,7 +119,7 @@ namespace EncryptionPasswordManager.Util
                 }
             }
 
-            // Return the encrypted bytes from the memory stream.
+            // Return the encrypted bytes from the memory stream as a String
             return Convert.ToBase64String(encrypted);
         }
     }
